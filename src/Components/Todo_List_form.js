@@ -20,23 +20,18 @@ function Todo_List_form({ item, handleChange, handleSubmit, isEdit }) {
             required
           />
         </div>
-        {isEdit ? (
-          <button
-            disabled={!item}
-            type="submit"
-            className="btn btn-block btn-primary mt-3 text-uppercase"
-          >
-            Update Item
-          </button>
-        ) : (
-          <button
-            disabled={!item}
-            type="submit"
-            className="btn btn-block btn-info mt-3 text-uppercase"
-          >
-            Add New Item
-          </button>
-        )}
+
+        <button
+          disabled={!item}
+          type="submit"
+          className={
+            !isEdit
+              ? "btn btn-block btn-info mt-3 text-uppercase"
+              : "btn btn-block btn-primary mt-3 text-uppercase"
+          }
+        >
+          {!isEdit ? "Add New Item" : "Update Item"}
+        </button>
       </form>
     </div>
   );

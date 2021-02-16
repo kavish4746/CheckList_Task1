@@ -84,11 +84,39 @@ class App extends Component {
     });
   };
 
-  handleEdit = (id) => {};
+  handleEdit = (id) => {
+    const selectedItemForEdit = this.state.todoList.find(
+      (item) => item.id === id
+    );
+    this.setState({
+      item: selectedItemForEdit.title,
+      editId: selectedItemForEdit.id,
+      isEdit: true,
+    });
+  };
 
-  handleChecked = (id) => {};
+  handleChecked = (id) => {
+    const currentList = [...this.state.todoList];
+    const updatedList = currentList.map((item, index) => {
+      if (item.id === id) {
+        return { ...item, isChecked: !item.isChecked };
+      } else {
+        return { ...item };
+      }
+    });
+    this.setState({
+      todoList: updatedList,
+    });
+  };
 
-  handleClearList = () => {};
+  handleClearList = () => {
+    this.setState({
+      todoList: [],
+      isEdit: false,
+      item: "",
+      isEmpty: true,
+    });
+  };
   render() {
     return (
       <div className="App">
